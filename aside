@@ -1,0 +1,100 @@
+ <!-- <script>
+        const apikey ="875d101e2206bd68b9da0407ba468a84";
+      const apiUrl ="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+       const searchBox = document.querySelector(".search input")
+      const searchBtn = document.querySelector(".search button")
+        const weatherIcon = document.querySelector(".weather-icon")
+        console.log("calling api");
+        let city = "Bamenda"
+        let url = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
+        fetch(`${url}?q=${city}&appid=${apikey}`).then(r=>r.json()).then(r=>console.log(r)).catch(e=>console.log(e))
+        let url2 = "https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
+        let api2 = "4397bb61a280232a6a49c10f5a1a21b9"
+        async function checkWeather(city){
+
+            // fetch(`${apiUrl}&city=${city}&appid=${apikey}`).then(r=>r.json()).then(r=>console.log(r)).catch(e=>console.log(e))
+
+            // const response = await fetch(`${apiUrl}&city=${city}&appid=${apikey}`);
+
+            // if(response.status == 404){
+            //     document.querySelector(".error").style.display = "block"
+            //     document.querySelector(".weather").style.display = "none"
+            // }
+            
+            // console.log(await response);
+            // let data = response.json()
+        //     document.querySelector(".city").innerHTML = data.name;
+        //    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        //     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        //     document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+            if(data.weather[0].main =="clouds"){
+                weatherIcon.src = "images/clouds.png"
+            }
+            else if(data.weather[0].main =="Clear"){
+                weatherIcon.src = "images/clear.png"
+            }
+            else if(data.weather[0].main =="Rain"){
+                weatherIcon.src = "images/Rain.png"
+            }
+            else if(data.weather[0].main =="Drizzle"){
+                weatherIcon.src = "images/drizzle.png"
+            }
+            else if(data.weather[0].main =="Mist"){
+                weatherIcon.src = "images/mists.png"
+            }
+        }
+
+
+// searchBtn.addEventListener("click", ()=>{
+//     checkWeather(searchBox.value);
+// })
+
+    
+    </script> -->
+    
+
+    
+    <div class="ACC">
+        <ul class="accordion">
+            <li>
+                <input type="radio" name="accordion" id="first" checked>
+                <label for="first">weather</label>
+                <div class="content">
+                <p>weather checked 0</p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="second">
+                <label for="second">weather 1</label>
+                <div class="content">
+                <p>weather checked 1</p>
+            </div>
+            </li>
+
+            <li>
+                <input type="radio" name="accordion" id="third">
+                <label for="third">weather 2</label>
+                <div class="content">
+                <p>weather checked 2</p>
+            </div>
+            </li>
+
+            <li>
+                <input type="radio" name="accordion" id="fourth">
+                <label for="fourth">weather 3</label>
+                <div class="content">
+                <p>weather checked 3</p>
+                </div>
+            </li>
+
+            <li>
+                <input type="radio" name="accordion" id="fifth">
+                <label for="fifth">weather 4</label>
+                <div class="content">
+                <p>weather checked 4</p>
+            </div>
+            </li>
+
+        </ul>

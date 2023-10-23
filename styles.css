@@ -69,7 +69,7 @@ body{
     margin-top: 50px;
 }
 .col{
-    display: flex;
+    display: flex !important;
     align-items: center;
     text-align: left;
 }
@@ -77,9 +77,9 @@ body{
     width: 40px;
     margin-right: 10px;
 }
-.humidity, wind{
-    font-size: 28px;
-    margin-top: 6px;
+.humidity, .wind{
+    font-size: 28px !important;
+    margin-top: 6px !important;
 }
 /* .weather{
     display: none;
@@ -89,18 +89,15 @@ body{
     margin-left: 10px;
     font-size: 14px;
     margin-top: 10px;
-    display: none;
 }
-.ACC{
-    margin: 0;
-padding: 0;
+/* .ACC{
 font-family: 'popping', sans-serif;
 box-sizing: border-box;
 background: #e3edf7;
 }
 .accordion{
-    margin:60px auto;
-    width: 600px
+    margin:20px auto;
+    width: 100px
 }
 .accordion li{
     width: 100px;
@@ -108,8 +105,7 @@ background: #e3edf7;
     padding: 10px;
     border-radius: 8px;
     background: #5b548a;
-    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-                6px 6px 10px -1px rgba(255, 255, 255, 0.7)
+    box-shadow: 6px;
 }
 .accordion li label{
 display:flex;
@@ -125,14 +121,10 @@ label::before{
     font-size: 24px;
     font-weight: 600;
 }
-input[type="radio"]{
-    display: none;
-}
 .accordion .content{
     color: #555;
     padding: 0 10px;
     line-height: 26px;
-    max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s, padding 0.5s;
 }
@@ -142,4 +134,4 @@ input[type="radio"]{
 }
 .accordion input[type="radio"]:checked + label::before{
     content: '-';
-}
+} */

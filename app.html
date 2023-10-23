@@ -6,187 +6,138 @@
     <meta name="viewport" content="width=s, initial-scale=1.0">
     <title>weather app</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.3.0-dist/js/bootstrap.min.js" defer>
 </head>
 
 <body>
     <div class="card">
         <div class="search">
-            <input name="city" type="text" placeholder="enter city name" id="city"  
-            spellcheck="false">
+            <input name="city" type="text" placeholder="enter city name" id="city" spellcheck="false">
             <button id="search"><img src="images/search.png"></button>
         </div>
         <div class="weather">
             <img id="image" src="images/rain.png" class="weather-icon">
             <p id="condition_text"></p>
             <h1 class="temp" id="temp">22°C</h1>
-                <h2 class="city_name" id="city_name">Bamenda</h2>
-                <div class="details">
-                    <div class="col">
-                        <img id="image" src="images/humidity.png">
+            <h2 class="city_name" id="city_name">Bamenda</h2>
+            <div class="details">
+                <div class="col">
+                    <img id="image" src="images/humidity.png">
                     <div>
-                    <p class="humidity"id="humidity"></p>
-                    <p>humidity</p>
+                        <p class="humidity" id="humidity"></p>
+                        <p>humidity</p>
+                    </div>
                 </div>
+                <div class="col">
+                    <img src="images/wind.png">
+                    <div>
+                        <p class="wind"><span id="wind_kph"></span>kph</p>
+                        <p class="wind"><span id="wind_mph"></span>mph</p>
+                        <p>Wind speed</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion accordion-flush" id="accordionFlushExample accordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                            demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
+                            body.</div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <div class="col">
-            <img src="images/wind.png">
-        <div>
-        <p class="wind"><span id="wind_kph"></span>kph</p>
-        <p class="wind"><span id="wind_mph"></span>mph</p>
-        <p>Wind speed</p>
-        </div>
-       
-    </div>
-    </div>
-    </div>
-
-    <div class="ACC">
-        <ul class="accordion">
-            <li>
-                <input type="radio" name="accordion" id="first" checked>
-                <label for="first">weather</label>
-                <div class="content">
-                <p>weather checked 0</p>
-                </div>
-            </li>
-            <li>
-                <input type="radio" name="accordion" id="second">
-                <label for="second">weather 1</label>
-                <div class="content">
-                <p>weather checked 1</p>
-            </div>
-            </li>
-
-            <li>
-                <input type="radio" name="accordion" id="third">
-                <label for="third">weather 2</label>
-                <div class="content">
-                <p>weather checked 2</p>
-            </div>
-            </li>
-
-            <li>
-                <input type="radio" name="accordion" id="fourth">
-                <label for="fourth">weather 3</label>
-                <div class="content">
-                <p>weather checked 3</p>
-                </div>
-            </li>
-
-            <li>
-                <input type="radio" name="accordion" id="fifth">
-                <label for="fifth">weather 4</label>
-                <div class="content">
-                <p>weather checked 4</p>
-            </div>
-            </li>
-
-        </ul> 
     </div>
     </div>
     </div>
     <script>
-       async function fetchWeatherData(city){
+        async function fetchWeatherData(city) {
             const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '972b2e4174msh9d212d4d8e2b4e5p149d0djsn4f14fea79506',
-                'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-            }
-        };
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '972b2e4174msh9d212d4d8e2b4e5p149d0djsn4f14fea79506',
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+                }
+            };
 
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            const {location, current, } = result
-            console.log(location);
-            console.log(current);
-            return {location, current};
-        } catch (error) {
-            console.error(error);
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                const { location, current, } = result
+               // console.log(location);
+                //console.log(current);
+                return { location, current };
+            } catch (error) {
+                console.error(error);
+            }
         }
+
+        async function fetchWeatherForecastData(city, days=1) {
+            const url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=${days}`
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '972b2e4174msh9d212d4d8e2b4e5p149d0djsn4f14fea79506',
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+                },
+
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                const { location, current, forecast} = result
+                console.log(location);
+                console.log(forecast);
+                return { location, forecast };
+            } catch (error) {
+                console.error(error);
+            }
         }
+
+
         let city = document.getElementById("city")
         let search = document.getElementById("search")
         let temp = document.getElementById("temp")
         let city_name = document.getElementById("city_name")
-       let image = document.getElementById("image")
-       let condition_text = document.getElementById("condition_text")
+        let image = document.getElementById("image")
+        let condition_text = document.getElementById("condition_text")
         let humidity = document.getElementById("humidity")
         let wind_kph = document.getElementById("wind_kph")
         let wind_mph = document.getElementById("wind_mph")
-        search.addEventListener("click", async()=>{
+        let acoordion = document.getElementById("accordion")
+        search.addEventListener("click", async () => {
             // console.log("Text",city.value);
-            const {location, current } = await fetchWeatherData(city.value);  
+            const { location, current } = await fetchWeatherData(city.value);
             city_name.textContent = location.name
-            temp.textContent = await current.temp_c
+            temp.textContent = await current.temp_c + '°C'
             image.setAttribute("src", current.condition.icon)
-             condition_text.textContent = current.condition.text
-             humidity.textContent = current.humidity
-             wind_kph.textContent = current.wind_kph
-             wind_mph.textContent = current.wind_mph
+            condition_text.textContent = current.condition.text
+            humidity.textContent = current.humidity + '%'
+            wind_kph.textContent = current.wind_kph
+            wind_mph.textContent = current.wind_mph
+            //  accordion.textcontent = 
 
+            const {forecast} = fetchWeatherForecastData(city.value, days=3)
+            // forecast.forecastDay.map()
         })
 
-        
+
     </script>
-    <!-- <script>
-        const apikey ="875d101e2206bd68b9da0407ba468a84";
-      const apiUrl ="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-
-       const searchBox = document.querySelector(".search input")
-      const searchBtn = document.querySelector(".search button")
-        const weatherIcon = document.querySelector(".weather-icon")
-        console.log("calling api");
-        let city = "Bamenda"
-        let url = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
-        fetch(`${url}?q=${city}&appid=${apikey}`).then(r=>r.json()).then(r=>console.log(r)).catch(e=>console.log(e))
-        let url2 = "https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
-        let api2 = "4397bb61a280232a6a49c10f5a1a21b9"
-        async function checkWeather(city){
-
-            // fetch(`${apiUrl}&city=${city}&appid=${apikey}`).then(r=>r.json()).then(r=>console.log(r)).catch(e=>console.log(e))
-
-            // const response = await fetch(`${apiUrl}&city=${city}&appid=${apikey}`);
-
-            // if(response.status == 404){
-            //     document.querySelector(".error").style.display = "block"
-            //     document.querySelector(".weather").style.display = "none"
-            // }
-            
-            // console.log(await response);
-            // let data = response.json()
-        //     document.querySelector(".city").innerHTML = data.name;
-        //    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-        //     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-        //     document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
-
-            if(data.weather[0].main =="clouds"){
-                weatherIcon.src = "images/clouds.png"
-            }
-            else if(data.weather[0].main =="Clear"){
-                weatherIcon.src = "images/clear.png"
-            }
-            else if(data.weather[0].main =="Rain"){
-                weatherIcon.src = "images/Rain.png"
-            }
-            else if(data.weather[0].main =="Drizzle"){
-                weatherIcon.src = "images/drizzle.png"
-            }
-            else if(data.weather[0].main =="Mist"){
-                weatherIcon.src = "images/mists.png"
-            }
-        }
-
-
-// searchBtn.addEventListener("click", ()=>{
-//     checkWeather(searchBox.value);
-// })
-
-        
-    </script> -->
-    
+    <script src="bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
